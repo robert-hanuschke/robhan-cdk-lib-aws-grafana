@@ -27,6 +27,8 @@ type WorkspaceAttributes struct {
 	//
 	// Required field.
 	PermissionType PermissionTypes `field:"required" json:"permissionType" yaml:"permissionType"`
+	// The arn of this workspace.
+	WorkspaceArn *string `field:"required" json:"workspaceArn" yaml:"workspaceArn"`
 	// A unique, case-sensitive, user-provided identifier to ensure the idempotency of the request.
 	//
 	// Must be 1-64 characters long and contain only printable ASCII characters.
@@ -72,13 +74,5 @@ type WorkspaceAttributes struct {
 	StackSetName *string `field:"optional" json:"stackSetName" yaml:"stackSetName"`
 	// The configuration settings for an Amazon VPC that contains data sources for your Grafana workspace to connect to.
 	VpcConfiguration *VpcConfiguration `field:"optional" json:"vpcConfiguration" yaml:"vpcConfiguration"`
-	// The arn of this workspace.
-	//
-	// Either this or the workspaceId must be provided.
-	WorkspaceArn *string `field:"optional" json:"workspaceArn" yaml:"workspaceArn"`
-	// The unique ID of this workspace.
-	//
-	// Either this or the workspaceArn must be provided.
-	WorkspaceId *string `field:"optional" json:"workspaceId" yaml:"workspaceId"`
 }
 
