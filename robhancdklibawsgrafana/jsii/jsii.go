@@ -5,24 +5,26 @@
 package jsii
 
 import (
-	_          "embed"
+	_                 "embed"
 
-	_jsii_     "github.com/aws/jsii-runtime-go/runtime"
+	_jsii_            "github.com/aws/jsii-runtime-go/runtime"
 
-	awscdk     "github.com/aws/aws-cdk-go/awscdk/v2/jsii"
-	constructs "github.com/aws/constructs-go/constructs/v10/jsii"
+	awscdk            "github.com/aws/aws-cdk-go/awscdk/v2/jsii"
+	constructs        "github.com/aws/constructs-go/constructs/v10/jsii"
+	robhancdklibutils "github.com/robert-hanuschke/robhan-cdk-lib-utils/robhancdklibutils/jsii"
 )
 
-//go:embed robhan-cdk-lib-aws_grafana-0.0.65.tgz
+//go:embed robhan-cdk-lib-aws_grafana-0.0.66.tgz
 var tarball []byte
 
 // Initialize loads the necessary packages in the @jsii/kernel to support the enclosing module.
 // The implementation is idempotent (and hence safe to be called over and over).
 func Initialize() {
 	// Ensure all dependencies are initialized
+	robhancdklibutils.Initialize()
 	awscdk.Initialize()
 	constructs.Initialize()
 
 	// Load this library into the kernel
-	_jsii_.Load("@robhan-cdk-lib/aws_grafana", "0.0.65", tarball)
+	_jsii_.Load("@robhan-cdk-lib/aws_grafana", "0.0.66", tarball)
 }
