@@ -1,4 +1,4 @@
-// AWS CDK Construct Library for Grafana
+// AWS CDK Construct Library for Amazon Managed Grafana
 package robhancdklibawsgrafana
 
 import (

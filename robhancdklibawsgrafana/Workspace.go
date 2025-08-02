@@ -536,6 +536,24 @@ func Workspace_IsResource(construct constructs.IConstruct) *bool {
 	return returns
 }
 
+func Workspace_IsWorkspace(x interface{}) *bool {
+	_init_.Initialize()
+
+	if err := validateWorkspace_IsWorkspaceParameters(x); err != nil {
+		panic(err)
+	}
+	var returns *bool
+
+	_jsii_.StaticInvoke(
+		"@robhan-cdk-lib/aws_grafana.Workspace",
+		"isWorkspace",
+		[]interface{}{x},
+		&returns,
+	)
+
+	return returns
+}
+
 func (w *jsiiProxy_Workspace) ApplyRemovalPolicy(policy awscdk.RemovalPolicy) {
 	if err := w.validateApplyRemovalPolicyParameters(policy); err != nil {
 		panic(err)

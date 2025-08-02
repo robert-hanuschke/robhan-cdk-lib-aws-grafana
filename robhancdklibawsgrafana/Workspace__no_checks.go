@@ -40,6 +40,10 @@ func validateWorkspace_IsResourceParameters(construct constructs.IConstruct) err
 	return nil
 }
 
+func validateWorkspace_IsWorkspaceParameters(x interface{}) error {
+	return nil
+}
+
 func validateNewWorkspaceParameters(scope constructs.Construct, id *string, props *WorkspaceProps) error {
 	return nil
 }

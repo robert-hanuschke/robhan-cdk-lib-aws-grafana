@@ -101,6 +101,14 @@ func validateWorkspace_IsResourceParameters(construct constructs.IConstruct) err
 	return nil
 }
 
+func validateWorkspace_IsWorkspaceParameters(x interface{}) error {
+	if x == nil {
+		return fmt.Errorf("parameter x is required, but nil was provided")
+	}
+
+	return nil
+}
+
 func validateNewWorkspaceParameters(scope constructs.Construct, id *string, props *WorkspaceProps) error {
 	if scope == nil {
 		return fmt.Errorf("parameter scope is required, but nil was provided")
