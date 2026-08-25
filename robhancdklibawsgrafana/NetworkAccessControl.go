@@ -13,7 +13,9 @@ type NetworkAccessControl struct {
 	// configuration (passed an empty array) then no IP addresses are allowed to access the
 	// workspace.
 	//
-	// Maximum of 5 prefix lists allowed.
+	// A maximum of 5 prefix lists is allowed (validated by CloudFormation at deploy time).
+	// Default: - no prefix lists; combined with an empty `vpcEndpoints`, all traffic is denied.
+	//
 	PrefixLists *[]awsec2.IPrefixList `field:"optional" json:"prefixLists" yaml:"prefixLists"`
 	// An array of Amazon VPC endpoint IDs for the workspace.
 	//
@@ -22,7 +24,9 @@ type NetworkAccessControl struct {
 	// is specified then only VPC endpoints specified here are allowed to access the workspace. If
 	// you pass in an empty array of strings, then no VPCs are allowed to access the workspace.
 	//
-	// Maximum of 5 VPC endpoints allowed.
+	// A maximum of 5 VPC endpoints is allowed (validated by CloudFormation at deploy time).
+	// Default: - no VPC endpoints; combined with an empty `prefixLists`, all traffic is denied.
+	//
 	VpcEndpoints *[]awsec2.IVpcEndpoint `field:"optional" json:"vpcEndpoints" yaml:"vpcEndpoints"`
 }
 

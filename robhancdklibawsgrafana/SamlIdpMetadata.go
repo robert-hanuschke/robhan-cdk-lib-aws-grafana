@@ -5,9 +5,14 @@ package robhancdklibawsgrafana
 type SamlIdpMetadata struct {
 	// The URL of the location containing the IdP metadata.
 	//
-	// Must be a string with length between 1 and 2048 characters.
+	// Must be a string with length between 1 and 2048 characters (validated by CloudFormation at
+	// deploy time).
+	// Default: - no metadata URL; supply `xml` instead.
+	//
 	Url *string `field:"optional" json:"url" yaml:"url"`
 	// The full IdP metadata, in XML format.
+	// Default: - no inline metadata; supply `url` instead.
+	//
 	Xml *string `field:"optional" json:"xml" yaml:"xml"`
 }
 

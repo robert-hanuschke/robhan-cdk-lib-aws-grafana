@@ -4,6 +4,10 @@ package robhancdklibawsgrafana
 
 // Building without runtime type checking enabled, so all the below just return nil
 
+func (w *jsiiProxy_Workspace) validateApplyCrossStackReferenceStrengthParameters(strength awscdk.ReferenceStrength) error {
+	return nil
+}
+
 func (w *jsiiProxy_Workspace) validateApplyRemovalPolicyParameters(policy awscdk.RemovalPolicy) error {
 	return nil
 }
@@ -21,6 +25,10 @@ func (w *jsiiProxy_Workspace) validateGetWorkspaceArnParameters(workspaceId *str
 }
 
 func (w *jsiiProxy_Workspace) validateGetWorkspaceIdParameters(workspaceArn *string) error {
+	return nil
+}
+
+func validateWorkspace_FromWorkspaceArnParameters(scope constructs.Construct, id *string, workspaceArn *string) error {
 	return nil
 }
 

@@ -10,13 +10,15 @@ type VpcConfiguration struct {
 	//
 	// Duplicates not allowed.
 	//
-	// Array Members: Minimum number of 1 items. Maximum number of 5 items.
+	// Array members: minimum of 1 item, maximum of 5 items (validated by CloudFormation at deploy
+	// time).
 	//
 	// Required for VPC configuration.
 	SecurityGroups *[]awsec2.ISecurityGroup `field:"required" json:"securityGroups" yaml:"securityGroups"`
 	// The list of Amazon EC2 subnets created in the Amazon VPC for your Grafana workspace to connect. Duplicates not allowed.
 	//
-	// Array Members: Minimum number of 2 items. Maximum number of 6 items.
+	// Array members: minimum of 2 items, maximum of 6 items (validated by CloudFormation at deploy
+	// time).
 	//
 	// Required for VPC configuration.
 	Subnets *[]awsec2.ISubnet `field:"required" json:"subnets" yaml:"subnets"`

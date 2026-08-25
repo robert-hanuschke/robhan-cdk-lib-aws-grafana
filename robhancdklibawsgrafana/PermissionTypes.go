@@ -13,7 +13,11 @@ type PermissionTypes string
 const (
 	// Customer-managed permissions where you manage user access to Grafana.
 	PermissionTypes_CUSTOMER_MANAGED PermissionTypes = "CUSTOMER_MANAGED"
-	// Service-managed permissions where AWS manages user access to Grafana.
+	// Service-managed permissions, where Amazon Managed Grafana creates and manages the IAM roles.
+	//
+	// Per the Amazon Managed Grafana API, this value is valid only for workspaces created through the
+	// console; workspaces created via the API, CLI, or CloudFormation (including this construct) must
+	// use `CUSTOMER_MANAGED`.
 	PermissionTypes_SERVICE_MANAGED PermissionTypes = "SERVICE_MANAGED"
 )
 

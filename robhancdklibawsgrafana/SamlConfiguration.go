@@ -11,15 +11,23 @@ type SamlConfiguration struct {
 	//
 	// If this is empty, all organizations in the assertion attribute have access.
 	//
-	// Must have between 1 and 256 elements.
+	// Must have between 1 and 256 elements (validated by CloudFormation at deploy time).
+	// Default: - all organizations in the assertion attribute have access.
+	//
 	AllowedOrganizations *[]*string `field:"optional" json:"allowedOrganizations" yaml:"allowedOrganizations"`
 	// A structure that defines which attributes in the SAML assertion are to be used to define information about the users authenticated by that IdP to use the workspace.
-	AssertionAtrributes *SamlAssertionAttributes `field:"optional" json:"assertionAtrributes" yaml:"assertionAtrributes"`
+	// Default: - no assertion attribute mapping.
+	//
+	AssertionAttributes *SamlAssertionAttributes `field:"optional" json:"assertionAttributes" yaml:"assertionAttributes"`
 	// How long a sign-on session by a SAML user is valid, before the user has to sign on again.
 	//
-	// Must be a positive number.
+	// Must be a positive number (validated by CloudFormation at deploy time).
+	// Default: - the service default session validity applies.
+	//
 	LoginValidityDuration *float64 `field:"optional" json:"loginValidityDuration" yaml:"loginValidityDuration"`
 	// A structure containing arrays that map group names in the SAML assertion to the Grafana Admin and Editor roles in the workspace.
+	// Default: - no role mapping.
+	//
 	RoleValues *SamlRoleValues `field:"optional" json:"roleValues" yaml:"roleValues"`
 }
 

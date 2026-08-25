@@ -5,11 +5,15 @@ package robhancdklibawsgrafana
 type SamlRoleValues struct {
 	// A list of groups from the SAML assertion attribute to grant the Grafana Admin role to.
 	//
-	// Maximum of 256 elements.
+	// A maximum of 256 elements is allowed (validated by CloudFormation at deploy time).
+	// Default: - no groups are granted the Admin role.
+	//
 	Admin *[]*string `field:"optional" json:"admin" yaml:"admin"`
 	// A list of groups from the SAML assertion attribute to grant the Grafana Editor role to.
 	//
-	// Maximum of 256 elements.
+	// A maximum of 256 elements is allowed (validated by CloudFormation at deploy time).
+	// Default: - no groups are granted the Editor role.
+	//
 	Editor *[]*string `field:"optional" json:"editor" yaml:"editor"`
 }
 

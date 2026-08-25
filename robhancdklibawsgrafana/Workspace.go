@@ -22,8 +22,12 @@ type Workspace interface {
 	// If this is
 	// ORGANIZATION, the OrganizationalUnits parameter specifies which organizational units the
 	// workspace can access.
+	//
+	// Always populated for a workspace created through this construct (it is a required prop).
 	AccountAccessType() AccountAccessType
 	// Specifies whether this workspace uses SAML 2.0, AWS IAM Identity Center, or both to authenticate users for using the Grafana console within a workspace.
+	//
+	// Always populated for a workspace created through this construct (it is a required prop).
 	AuthenticationProviders() *[]AuthenticationProviders
 	// A unique, case-sensitive, user-provided identifier to ensure the idempotency of the request.
 	ClientToken() *string
@@ -71,6 +75,8 @@ type Workspace interface {
 	// If you are working with a workspace in a member account of an organization and that account is
 	// not a delegated administrator account, and you want the workspace to access data sources in
 	// other AWS accounts in the organization, this parameter must be set to CUSTOMER_MANAGED.
+	//
+	// Always populated for a workspace created through this construct (it is a required prop).
 	PermissionType() PermissionTypes
 	// Returns a string-encoded token that resolves to the physical name that should be passed to the CloudFormation resource.
 	//
@@ -92,7 +98,10 @@ type Workspace interface {
 	// If the workspace uses SAML, use this structure to map SAML assertion attributes to workspace user information and define which groups in the assertion attribute are to have the Admin and Editor roles in the workspace.
 	SamlConfiguration() *SamlConfiguration
 	// Specifies whether the workspace's SAML configuration is complete.
-	SamlConfigurationStatus() SamlConfigurationStatuses
+	//
+	// This is a deploy-time CloudFormation attribute resolved as an unresolved token at synth time,
+	// so it is typed as `string`. See the `SamlConfigurationStatuses` enum for the possible values.
+	SamlConfigurationStatus() *string
 	// The ID of the IAM Identity Center-managed application that is created by Amazon Managed Grafana.
 	SsoClientId() *string
 	// The stack in which this resource is defined.
@@ -100,13 +109,24 @@ type Workspace interface {
 	// The name of the AWS CloudFormation stack set that is used to generate IAM roles to be used for this workspace.
 	StackSetName() *string
 	// The current status of the workspace.
-	Status() Status
+	//
+	// This is a deploy-time CloudFormation attribute resolved as an unresolved token at synth time,
+	// so it is typed as `string`. See the `Status` enum for the possible values.
+	Status() *string
 	// The configuration settings for an Amazon VPC that contains data sources for your Grafana workspace to connect to.
 	VpcConfiguration() *VpcConfiguration
 	// The arn of this workspace.
 	WorkspaceArn() *string
 	// The unique ID of this workspace.
 	WorkspaceId() *string
+	// Override the cross-stack reference strength for this resource.
+	//
+	// When set, any cross-stack reference to this resource will use the specified
+	// mechanism instead of the global default determined by the
+	// `@aws-cdk/core:defaultCrossStackReferences` context key. This is useful for
+	// selectively weakening specific references to avoid the "deadly embrace" problem
+	// without changing the app-wide default.
+	ApplyCrossStackReferenceStrength(strength awscdk.ReferenceStrength)
 	// Apply the given removal policy to this resource.
 	//
 	// The Removal Policy controls what happens to this resource when it stops
@@ -359,8 +379,8 @@ func (j *jsiiProxy_Workspace) SamlConfiguration() *SamlConfiguration {
 	return returns
 }
 
-func (j *jsiiProxy_Workspace) SamlConfigurationStatus() SamlConfigurationStatuses {
-	var returns SamlConfigurationStatuses
+func (j *jsiiProxy_Workspace) SamlConfigurationStatus() *string {
+	var returns *string
 	_jsii_.Get(
 		j,
 		"samlConfigurationStatus",
@@ -399,8 +419,8 @@ func (j *jsiiProxy_Workspace) StackSetName() *string {
 	return returns
 }
 
-func (j *jsiiProxy_Workspace) Status() Status {
-	var returns Status
+func (j *jsiiProxy_Workspace) Status() *string {
+	var returns *string
 	_jsii_.Get(
 		j,
 		"status",
@@ -465,6 +485,30 @@ func NewWorkspace_Override(w Workspace, scope constructs.Construct, id *string, 
 		[]interface{}{scope, id, props},
 		w,
 	)
+}
+
+// Import an existing workspace from its ARN.
+//
+// A single ARN is the most common handle for referencing an existing workspace. The imported
+// workspace only exposes identity information (`workspaceArn` and `workspaceId`); the create-time
+// configuration properties are not available on an ARN import. Use `fromWorkspaceAttributes` when
+// those properties are required.
+func Workspace_FromWorkspaceArn(scope constructs.Construct, id *string, workspaceArn *string) IWorkspace {
+	_init_.Initialize()
+
+	if err := validateWorkspace_FromWorkspaceArnParameters(scope, id, workspaceArn); err != nil {
+		panic(err)
+	}
+	var returns IWorkspace
+
+	_jsii_.StaticInvoke(
+		"@robhan-cdk-lib/aws_grafana.Workspace",
+		"fromWorkspaceArn",
+		[]interface{}{scope, id, workspaceArn},
+		&returns,
+	)
+
+	return returns
 }
 
 func Workspace_FromWorkspaceAttributes(scope constructs.Construct, id *string, attrs *WorkspaceAttributes) IWorkspace {
@@ -574,6 +618,17 @@ func Workspace_IsWorkspace(x interface{}) *bool {
 	)
 
 	return returns
+}
+
+func (w *jsiiProxy_Workspace) ApplyCrossStackReferenceStrength(strength awscdk.ReferenceStrength) {
+	if err := w.validateApplyCrossStackReferenceStrengthParameters(strength); err != nil {
+		panic(err)
+	}
+	_jsii_.InvokeVoid(
+		w,
+		"applyCrossStackReferenceStrength",
+		[]interface{}{strength},
+	)
 }
 
 func (w *jsiiProxy_Workspace) ApplyRemovalPolicy(policy awscdk.RemovalPolicy) {
